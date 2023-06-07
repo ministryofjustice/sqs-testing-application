@@ -1,4 +1,4 @@
-microservice-template/.gradle
+sqs-tester/.gradle
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

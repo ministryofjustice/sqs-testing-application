@@ -1,13 +1,13 @@
-package uk.gov.justice.laa.crime.microservice;
+package uk.gov.justice.laa.crime.microservice.sqstester;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroserviceTemplateApplication {
+public class SqsTesterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroserviceTemplateApplication.class, args);
+		SpringApplication.run(SqsTesterApplication.class, args);
 	}
 
 }

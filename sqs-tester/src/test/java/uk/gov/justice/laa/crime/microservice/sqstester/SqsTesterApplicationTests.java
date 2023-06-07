@@ -1,10 +1,10 @@
-package uk.gov.justice.laa.crime.microservice;
+package uk.gov.justice.laa.crime.microservice.sqstester;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicroserviceTemplateApplicationTests {
+class SqsTesterApplicationTests {
 
 	@Test
 	void contextLoads() {
