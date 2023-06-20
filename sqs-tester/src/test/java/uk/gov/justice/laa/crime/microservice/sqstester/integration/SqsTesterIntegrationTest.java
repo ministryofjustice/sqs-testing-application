@@ -35,7 +35,7 @@ public class SqsTesterIntegrationTest {
     void givenValidRequestBody_whenSqsControllerVisited_thenCallIndexAndReturnOkResponse() throws Exception {
         String caseJson = FileUtils.readFileToString("data/sqstester/case_default.json");
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/request")
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(caseJson);
 
@@ -47,7 +47,7 @@ public class SqsTesterIntegrationTest {
 
     @Test
     void givenNoRequestBody_whenSqsControllerVisited_thenCallIndexAndReturn400Error() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/request");
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message");
 
         mvc.perform(request)
                 .andExpect(status().is4xxClientError())
@@ -56,7 +56,7 @@ public class SqsTesterIntegrationTest {
 
     @Test
     void givenInvalidRequestBody_whenSqsControllerVisited_thenCallIndexAndReturn400Error() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/request")
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message")
                 .content("Not valid JSON");
 
         mvc.perform(request)

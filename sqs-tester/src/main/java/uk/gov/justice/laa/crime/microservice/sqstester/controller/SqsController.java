@@ -10,8 +10,8 @@ import uk.gov.justice.laa.crime.microservice.sqstester.model.Request;
 @RestController
 public class SqsController {
 
-    @PostMapping("/request")
-    public ResponseEntity retrieveMessage(@RequestBody Request request) {
+    @PostMapping("/send-message")
+    public ResponseEntity sendMessageToQueue(@RequestBody Request request) {
         // Will do something with this data in an upcoming story
         return ResponseEntity.ok(HttpStatus.OK);
     }
