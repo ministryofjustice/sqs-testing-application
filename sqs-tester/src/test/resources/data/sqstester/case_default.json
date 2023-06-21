@@ -1,0 +1,30 @@
+{
+  "maatId": "1234567",
+  "caseUrn": "DCTITWHWUO",
+  "asn": "Z2X16WF0C1FD",
+  "cjsAreaCode": "36",
+  "createdUser": "test-s",
+  "cjsLocation": "C36NR",
+  "docLanguage": "EN",
+  "isActive": true,
+  "defendant": {
+    "defendantId": "f1202c1b-9295-4431-ad80-ae0007c6fd7f",
+    "forename": "Test",
+    "surname": "Test",
+    "dateOfBirth": "1996-03-02",
+    "nino": "JL123456D",
+    "offences": [
+      {
+        "offenceId": "4e4dd9d9-f01c-496c-9766-8f57f68f0e86",
+        "offenceCode": "PT00011",
+        "asnSeq": 1,
+        "offenceClassification": "Either way",
+        "offenceDate": "2019-10-17",
+        "offenceShortTitle": "Evasion of liability by deception",
+        "offenceWording": "Random string"
+      }
+    ]
+  },
+  "sessions": [{ "courtLocation": "C36NR", "dateOfHearing": "2023-05-10" }],
+  "metadata": { "laaTransactionId": "2ffcc2d46179915de548229bcacfaf06" }
+}
