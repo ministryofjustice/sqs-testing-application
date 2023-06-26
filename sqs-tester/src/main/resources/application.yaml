@@ -1,1 +1,3 @@
-
+app:
+  api_username: "crimeapps"
+  api_password: "{bcrypt}$2a$10$hAFPcsLwxQOt3n1svxPs2.6HAB85Jmnh.XBjBT7/qNCLuh.plZDXu"
