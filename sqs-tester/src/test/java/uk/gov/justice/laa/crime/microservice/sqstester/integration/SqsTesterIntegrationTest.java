@@ -2,12 +2,8 @@ package uk.gov.justice.laa.crime.microservice.sqstester.integration;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -24,7 +20,6 @@ import static org.hamcrest.Matchers.containsString;
 @SpringBootTest(classes = SqsTesterApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @AutoConfigureMockMvc(addFilters = false)
-//@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 public class SqsTesterIntegrationTest {
 
     private MockMvc mvc;
@@ -38,14 +33,12 @@ public class SqsTesterIntegrationTest {
                 .build();
     }
 
-    //@WithMockUser(value = "spring")
     @Test
     void givenValidRequest_thenReturnOkResponse() throws Exception {
         String caseJson = FileUtils.readFileToString("data/sqstester/case_default.json");
 
         RequestBuilder request = MockMvcRequestBuilders.post("/send-message")
                 .contentType(MediaType.APPLICATION_JSON)
-                //.with(httpBasic("user","password"))
                 .content(caseJson);
 
         mvc.perform(request)
