@@ -3,17 +3,20 @@ package uk.gov.justice.laa.crime.microservice.sqstester;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.util.WebUtils;
 
-import java.util.Collections;
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -40,20 +43,27 @@ public class GlobalExceptionHandler {
 
     // Customize the response for MethodArgumentNotValidException.
     protected ResponseEntity<ApiError> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        List<String> errorMessages = ex.getAllErrors()
-                .stream()
-                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.toList());
+        List<ProblemDetail> problemList = new ArrayList<ProblemDetail>();
 
-        return handleExceptionInternal(ex, new ApiError(errorMessages), headers, status, request);
+        for (ObjectError error : ex.getAllErrors()) {
+            ProblemDetail problemDetail = ProblemDetail.forStatus(status);
+            problemDetail.setTitle("Value invalid.");
+            problemDetail.setInstance(URI.create(((ServletWebRequest) request).getRequest().getRequestURL().toString()));
+            problemDetail.setDetail(error.getDefaultMessage());
+            problemList.add(problemDetail);
+        }
+
+        return handleExceptionInternal(ex, new ApiError(problemList), headers, status, request);
     }
 
     // Customize the response for HttpMessageNotReadableException.
     protected ResponseEntity<ApiError> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        List<String> errorMessage = Collections.singletonList("Invalid JSON format. Please check you are passing through" +
-                " all required values of the correct type.");
+        ProblemDetail problemDetail = ProblemDetail.forStatus(status);
+        problemDetail.setTitle("JSON cannot be parsed.");
+        problemDetail.setInstance(URI.create(((ServletWebRequest) request).getRequest().getRequestURL().toString()));
+        problemDetail.setDetail("Invalid JSON format. Please check you are passing through all required values of the correct type.");
 
-        return handleExceptionInternal(ex, new ApiError(errorMessage), headers, status, request);
+        return handleExceptionInternal(ex, new ApiError(problemDetail), headers, status, request);
     }
 
     // Customize the body of all Exception types.
