@@ -12,7 +12,11 @@ import uk.gov.justice.laa.crime.microservice.sqstester.model.Request;
 
 @RestController
 public class SqsController {
-
+    /**
+     *
+     * @param request The data we receive in JSON format
+     * @return A string with a 200 'OK' status code
+     */
     @PostMapping("/send-message")
     @MethodLogger()
     @Operation(summary = "Send a request off to the message queue.")
