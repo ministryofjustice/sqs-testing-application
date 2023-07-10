@@ -1,5 +1,6 @@
 package uk.gov.justice.laa.crime.microservice.sqstester.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ public class SqsController {
 
     @PostMapping("/send-message")
     @MethodLogger()
+    @Operation(summary = "Send a request off to the message queue.")
     public ResponseEntity sendMessageToQueue(@Valid @RequestBody Request request) {
         // Will do something with this data in an upcoming story
         return ResponseEntity.ok(HttpStatus.OK);
