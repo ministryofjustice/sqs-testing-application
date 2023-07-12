@@ -1,0 +1,13 @@
+@startuml
+Participant User
+Participant Api
+Participant "Message queue"
+
+User -> Api: Valid request
+Api ->> "Message queue": Send request to message queue
+Api --> User: Response (OK)
+|||
+User -> Api: Invalid request
+Api --> User: Response (Invalid)
+
+@enduml

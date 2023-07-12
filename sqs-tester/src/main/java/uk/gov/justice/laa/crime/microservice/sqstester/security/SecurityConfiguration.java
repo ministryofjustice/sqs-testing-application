@@ -23,6 +23,12 @@ public class SecurityConfiguration {
     @Value("${app.api_password}")
     private String apiPassword;
 
+    /**
+     * Allow a user to gain access with a username and password
+     *
+     * @param passwordEncoder Encodes the provided password
+     * @return The user using an in-memory database
+     */
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails user = User.withUsername(this.apiUsername)
@@ -32,6 +38,13 @@ public class SecurityConfiguration {
         return new InMemoryUserDetailsManager(user);
     }
 
+    /**
+     * Protect the specified path with HttpBasic authentication
+     *
+     * @param http Configure security for the request
+     * @return An object with Http security configured
+     * @throws Exception Throws an exception
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -45,6 +58,11 @@ public class SecurityConfiguration {
     }
 
 
+    /**
+     * Encodes passwords
+     *
+     * @return A password encoder
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();

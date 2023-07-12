@@ -1,3 +1,8 @@
 app:
   api_username: "crimeapps"
   api_password: "{bcrypt}$2a$10$hAFPcsLwxQOt3n1svxPs2.6HAB85Jmnh.XBjBT7/qNCLuh.plZDXu"
+springdoc:
+  api-docs:
+    path: "/api-documentation-raw"
+  swagger-ui:
+    path: "/api-documentation.html"
