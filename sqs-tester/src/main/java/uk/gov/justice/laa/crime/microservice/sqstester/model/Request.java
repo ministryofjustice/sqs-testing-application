@@ -119,4 +119,21 @@ public class Request {
     public void setMetadata(MetaData metadata) {
         this.metadata = metadata;
     }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "maatId='" + maatId + '\'' +
+                ", caseUrn='" + caseUrn + '\'' +
+                ", asn='" + asn + '\'' +
+                ", cjsAreaCode='" + cjsAreaCode + '\'' +
+                ", createdUser='" + createdUser + '\'' +
+                ", cjsLocation='" + cjsLocation + '\'' +
+                ", docLanguage='" + docLanguage + '\'' +
+                ", isActive=" + isActive +
+                ", defendant=" + defendant +
+                ", sessions=" + sessions +
+                ", metadata=" + metadata +
+                '}';
+    }
 }
