@@ -74,4 +74,17 @@ public class Offence {
     public void setOffenceWording(String offenceWording) {
         this.offenceWording = offenceWording;
     }
+
+    @Override
+    public String toString() {
+        return "Offence{" +
+                "offenceId='" + offenceId + '\'' +
+                ", offenceCode='" + offenceCode + '\'' +
+                ", asnSeq=" + asnSeq +
+                ", offenceClassification='" + offenceClassification + '\'' +
+                ", offenceDate='" + offenceDate + '\'' +
+                ", offenceShortTitle='" + offenceShortTitle + '\'' +
+                ", offenceWording='" + offenceWording + '\'' +
+                '}';
+    }
 }

@@ -68,4 +68,16 @@ public class Defendant {
     public void setOffences(List<Offence> offences) {
         this.offences = offences;
     }
+
+    @Override
+    public String toString() {
+        return "Defendant{" +
+                "defendantId='" + defendantId + '\'' +
+                ", forename='" + forename + '\'' +
+                ", surname='" + surname + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", nino='" + nino + '\'' +
+                ", offences=" + offences +
+                '}';
+    }
 }

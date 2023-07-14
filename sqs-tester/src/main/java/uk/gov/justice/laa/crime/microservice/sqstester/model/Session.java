@@ -23,4 +23,12 @@ public class Session {
     public void setDateOfHearing(String dateOfHearing) {
         this.dateOfHearing = dateOfHearing;
     }
+
+    @Override
+    public String toString() {
+        return "Session{" +
+                "courtLocation='" + courtLocation + '\'' +
+                ", dateOfHearing='" + dateOfHearing + '\'' +
+                '}';
+    }
 }

@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-	compileOnly 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -32,6 +32,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+	testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.1.1'
 }
 
 tasks.named('test') {

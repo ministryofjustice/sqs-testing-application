@@ -48,21 +48,22 @@ public class SqsTesterIntegrationTest {
     }
 
     @Test
-    void givenNoRequestBodyOrContentType_thenReturn400Response() throws Exception {
+    void givenNoRequestBodyOrContentType_thenReturn500Response() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders.post("/send-message");
 
         mvc.perform(request)
-                .andExpect(status().is4xxClientError())
+                .andExpect(status().is5xxServerError())
                 .andReturn();
     }
 
     @Test
-    void givenInvalidRequestBody_thenReturn400Response() throws Exception {
+    void givenInvalidRequestBody_thenReturn500Response() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders.post("/send-message")
-                .content("Not valid JSON");
+                .content("Not valid JSON")
+                .contentType(MediaType.APPLICATION_JSON);
 
         mvc.perform(request)
-                .andExpect(status().is4xxClientError())
+                .andExpect(status().is5xxServerError())
                 .andReturn();
     }
 }

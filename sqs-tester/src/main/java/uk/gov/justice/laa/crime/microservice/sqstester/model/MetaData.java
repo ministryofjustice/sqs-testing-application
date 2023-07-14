@@ -13,4 +13,11 @@ public class MetaData {
     public void setLaaTransactionId(String laaTransactionId) {
         this.laaTransactionId = laaTransactionId;
     }
+
+    @Override
+    public String toString() {
+        return "MetaData{" +
+                "laaTransactionId='" + laaTransactionId + '\'' +
+                '}';
+    }
 }
