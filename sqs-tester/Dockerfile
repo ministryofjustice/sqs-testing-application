@@ -1,5 +1,5 @@
 FROM amazoncorretto:17-alpine
-RUN mkdir -p /opt/sqs-tester/
-WORKDIR /opt/sqs-tester/
-COPY ./build/libs/sqs-tester.jar /opt/sqs-tester/app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+VOLUME /tmp
+COPY ./build/libs/sqs-tester-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+CMD java -jar app.jar
