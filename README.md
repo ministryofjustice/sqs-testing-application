@@ -23,6 +23,7 @@ This is a Spring Boot application that allows the testing of SQS queues across v
 ## Running Application in Docker
 
 To run the application in Docker:
+
 1. Do a clean build by running ./gradlew clean build
 2. Ensure Docker Desktop is running to run the application in Docker
 3. Build the Docker image using the command: docker-compose build
