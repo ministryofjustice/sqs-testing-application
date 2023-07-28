@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import uk.gov.justice.laa.crime.microservice.sqstester.logging.MethodLogger;
 import uk.gov.justice.laa.crime.microservice.sqstester.model.requests.LinkRequest;
+import uk.gov.justice.laa.crime.microservice.sqstester.model.requests.UnlinkRequest;
 import uk.gov.justice.laa.crime.microservice.sqstester.service.MessageQueueProcessor;
 
 @RestController
@@ -25,6 +26,9 @@ public class SqsController {
 
     @Value("${cloud-platform.aws.sqs.queue.link}")
     private String sqsQueueLink;
+
+    @Value("${cloud-platform.aws.sqs.queue.unlink}")
+    private String sqsQueueUnlink;
 
     /**
      *
@@ -39,6 +43,21 @@ public class SqsController {
             ObjectMapper objectMapper = new ObjectMapper();
             String messageBody = objectMapper.writeValueAsString(request);
             messageQueueProcessor.execute(sqsQueueLink, messageBody);
+        } catch (JsonProcessingException exception) {
+            log.warn(exception.getMessage());
+        }
+
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/send-message/unlink")
+    @MethodLogger()
+    @Operation(summary = "Send a request off to the 'unlink' message queue.")
+    public ResponseEntity sendMessageToUnlinkQueue(@Valid @RequestBody UnlinkRequest request) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String messageBody = objectMapper.writeValueAsString(request);
+            messageQueueProcessor.execute(sqsQueueUnlink, messageBody);
         } catch (JsonProcessingException exception) {
             log.warn(exception.getMessage());
         }

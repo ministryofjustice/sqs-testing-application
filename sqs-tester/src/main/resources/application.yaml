@@ -16,6 +16,4 @@ cloud-platform:
         link: ${CREATE_LINK_QUEUE}
         unlink: ${UNLINK_QUEUE}
         config:
-          messageDelay: 0
           messageDelayDuration: 0
-          dlqReprocessingDelayMilliseconds: 30000
