@@ -1,12 +1,15 @@
-package uk.gov.justice.laa.crime.microservice.sqstester.model;
+package uk.gov.justice.laa.crime.microservice.sqstester.model.requests;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import uk.gov.justice.laa.crime.microservice.sqstester.model.Defendant;
+import uk.gov.justice.laa.crime.microservice.sqstester.model.MetaData;
+import uk.gov.justice.laa.crime.microservice.sqstester.model.Session;
 
 import java.util.List;
 
-public class Request {
+public class LinkRequest {
     @NotBlank(message = "You must provide the MAAT ID.")
     private String maatId;
     @NotBlank(message = "You must provide the case URN.")

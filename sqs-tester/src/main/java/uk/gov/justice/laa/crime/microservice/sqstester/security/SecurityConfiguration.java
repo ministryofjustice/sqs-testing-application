@@ -1,5 +1,6 @@
 package uk.gov.justice.laa.crime.microservice.sqstester.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@Slf4j
 public class SecurityConfiguration {
 
     @Value("${app.api_username}")
@@ -32,7 +34,7 @@ public class SecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails user = User.withUsername(this.apiUsername)
-                .password(this.apiPassword)
+                .password(passwordEncoder.encode(this.apiPassword))
                 .build();
 
         return new InMemoryUserDetailsManager(user);

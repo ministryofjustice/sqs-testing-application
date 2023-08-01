@@ -1,8 +1,19 @@
 app:
-  api_username: "crimeapps"
-  api_password: "{bcrypt}$2a$10$hAFPcsLwxQOt3n1svxPs2.6HAB85Jmnh.XBjBT7/qNCLuh.plZDXu"
+  api_username: ${API_USERNAME}
+  api_password: ${API_PASSWORD}
 springdoc:
   api-docs:
     path: "/api-documentation-raw"
   swagger-ui:
     path: "/api-documentation.html"
+cloud-platform:
+  aws:
+    sqs:
+      region: ${CLOUD_PLATFORM_QUEUE_REGION}
+      accesskey: ${CLOUD_PLATFORM_QUEUE_ACCESS_KEY}
+      secretkey: ${CLOUD_PLATFORM_QUEUE_SECRET_KEY}
+      queue:
+        link: ${CREATE_LINK_QUEUE}
+        unlink: ${UNLINK_QUEUE}
+        config:
+          messageDelayDuration: 0

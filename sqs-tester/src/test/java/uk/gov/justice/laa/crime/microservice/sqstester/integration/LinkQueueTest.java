@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.containsString;
 @SpringBootTest(classes = SqsTesterApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @AutoConfigureMockMvc(addFilters = false)
-public class SqsTesterIntegrationTest {
+public class LinkQueueTest {
 
     private MockMvc mvc;
 
@@ -37,7 +37,7 @@ public class SqsTesterIntegrationTest {
     void givenValidRequest_thenReturnOkResponse() throws Exception {
         String caseJson = FileUtils.readFileToString("data/sqstester/case_default.json");
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/send-message")
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(caseJson);
 
@@ -49,7 +49,7 @@ public class SqsTesterIntegrationTest {
 
     @Test
     void givenNoRequestBodyOrContentType_thenReturn500Response() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/send-message");
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link");
 
         mvc.perform(request)
                 .andExpect(status().is5xxServerError())
@@ -58,7 +58,7 @@ public class SqsTesterIntegrationTest {
 
     @Test
     void givenInvalidRequestBody_thenReturn500Response() throws Exception {
-        RequestBuilder request = MockMvcRequestBuilders.post("/send-message")
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link")
                 .content("Not valid JSON")
                 .contentType(MediaType.APPLICATION_JSON);
 
