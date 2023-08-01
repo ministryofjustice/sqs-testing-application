@@ -2,4 +2,3 @@
 *.bat text eol=crlf
 docker-compose.override.yml filter=git-crypt diff=git-crypt
 docker-compose-debug.yml filter=git-crypt diff=git-crypt
-sqs-tester/src/test/resources/application.yaml filter=git-crypt diff=git-crypt
