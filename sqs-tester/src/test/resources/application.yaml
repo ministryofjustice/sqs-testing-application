@@ -1,0 +1,29 @@
+app:
+  api_username: test
+  api_password: test
+cloud:
+  aws:
+    stack:
+      auto: false
+      enabled: false
+    region:
+      static: eu-west-2
+      auto: false
+    credentials:
+      access-key: access
+      secret-key: secret
+    sqs:
+      endpoint: http://localhost:4566
+      listener:
+        queue-stop-timeout: 500
+cloud-platform:
+  aws:
+    sqs:
+      region: eu-west-1
+      accesskey: access
+      secretkey: secret
+      queue:
+        link: link
+        unlink: unlink
+        config:
+          messageDelayDuration: 0
