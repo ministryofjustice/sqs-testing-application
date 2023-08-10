@@ -12,7 +12,7 @@ public class FileUtils {
     /**
      * Read the entire contents of a file and return it as a String.
      *
-     * @param filePath e.g. "data/sqstester/case_default.json"
+     * @param filePath e.g. "data/sqstester/link_example.json"
      * @return String representation of the file contents
      */
     public static String readFileToString(String filePath) {

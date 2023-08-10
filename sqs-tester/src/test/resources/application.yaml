@@ -1,3 +1,6 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
 app:
   api_username: test
   api_password: test
@@ -7,11 +10,11 @@ cloud:
       auto: false
       enabled: false
     region:
-      static: eu-west-2
+      static: eu-west-1
       auto: false
     credentials:
-      access-key: access
-      secret-key: secret
+      access-key: accesskey
+      secret-key: secretkey
     sqs:
       endpoint: http://localhost:4566
       listener:
@@ -20,8 +23,8 @@ cloud-platform:
   aws:
     sqs:
       region: eu-west-1
-      accesskey: access
-      secretkey: secret
+      accesskey: accesskey
+      secretkey: secretkey
       queue:
         link: link
         unlink: unlink
