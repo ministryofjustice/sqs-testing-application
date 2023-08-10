@@ -2,40 +2,33 @@ package uk.gov.justice.laa.crime.microservice.sqstester.integration;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-import uk.gov.justice.laa.crime.microservice.sqstester.SqsTesterApplication;
+import uk.gov.justice.laa.crime.microservice.sqstester.controller.SqsController;
+import uk.gov.justice.laa.crime.microservice.sqstester.service.MessageQueueProcessor;
 import uk.gov.justice.laa.crime.microservice.sqstester.testutils.FileUtils;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.hamcrest.Matchers.containsString;
 
-@SpringBootTest(classes = SqsTesterApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@AutoConfigureMockMvc(addFilters = false)
-public class LinkQueueTest {
-
-    private MockMvc mvc;
+@WebMvcTest(controllers = SqsController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
+public class SqsControllerTest {
 
     @Autowired
-    private WebApplicationContext webApplicationContext;
+    private MockMvc mvc;
 
-    @BeforeEach
-    public void setup() {
-        this.mvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext)
-                .build();
-    }
+    @MockBean
+    private MessageQueueProcessor messageQueueProcessor;
 
     @Test
     void givenValidRequest_thenReturnOkResponse() throws Exception {
-        String caseJson = FileUtils.readFileToString("data/sqstester/case_default.json");
+        String caseJson = FileUtils.readFileToString("data/sqstester/link_example.json");
 
         RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link")
                 .contentType(MediaType.APPLICATION_JSON)

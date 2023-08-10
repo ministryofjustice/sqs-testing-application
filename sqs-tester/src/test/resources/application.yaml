@@ -1,0 +1,32 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+app:
+  api_username: test
+  api_password: test
+cloud:
+  aws:
+    stack:
+      auto: false
+      enabled: false
+    region:
+      static: eu-west-1
+      auto: false
+    credentials:
+      access-key: accesskey
+      secret-key: secretkey
+    sqs:
+      endpoint: http://localhost:4566
+      listener:
+        queue-stop-timeout: 500
+cloud-platform:
+  aws:
+    sqs:
+      region: eu-west-1
+      accesskey: accesskey
+      secretkey: secretkey
+      queue:
+        link: link
+        unlink: unlink
+        config:
+          messageDelayDuration: 0

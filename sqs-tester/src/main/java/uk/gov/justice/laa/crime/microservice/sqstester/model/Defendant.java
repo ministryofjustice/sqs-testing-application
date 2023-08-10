@@ -3,9 +3,17 @@ package uk.gov.justice.laa.crime.microservice.sqstester.model;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Defendant {
     @NotBlank(message = "You must provide the defendant's ID.")
     private String defendantId;
@@ -20,64 +28,4 @@ public class Defendant {
     @Valid
     @NotNull(message = "You must provide the defendant's offences.")
     private List<Offence> offences;
-
-    public String getDefendantId() {
-        return defendantId;
-    }
-
-    public void setDefendantId(String defendantId) {
-        this.defendantId = defendantId;
-    }
-
-    public String getForename() {
-        return forename;
-    }
-
-    public void setForename(String forename) {
-        this.forename = forename;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getNino() {
-        return nino;
-    }
-
-    public void setNino(String nino) {
-        this.nino = nino;
-    }
-
-    public List<Offence> getOffences() {
-        return offences;
-    }
-
-    public void setOffences(List<Offence> offences) {
-        this.offences = offences;
-    }
-
-    @Override
-    public String toString() {
-        return "Defendant{" +
-                "defendantId='" + defendantId + '\'' +
-                ", forename='" + forename + '\'' +
-                ", surname='" + surname + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", nino='" + nino + '\'' +
-                ", offences=" + offences +
-                '}';
-    }
 }
