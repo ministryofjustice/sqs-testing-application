@@ -19,6 +19,13 @@ jobs:
         with:
           role-to-assume: ${{ secrets.ECR_ROLE_TO_ASSUME }}
           aws-region: ${{ vars.ECR_REGION }}
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'zulu' # Alternative distribution options are available
+      - run: ./gradlew build
+      - run: ls build/libs
       - uses: aws-actions/amazon-ecr-login@v1
         id: login-ecr
       - run: |
