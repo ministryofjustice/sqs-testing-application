@@ -7,9 +7,6 @@ on:
 jobs:
   ecr:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: sqs-tester
     permissions:
       id-token: write # This is required for requesting the JWT
       contents: read # This is required for actions/checkout
@@ -24,11 +21,16 @@ jobs:
         with:
           java-version: 17
           distribution: 'zulu' # Alternative distribution options are available
-      - run: ./gradlew build
-      - run: ls build/libs
+      - name: Build application
+        working-directory: sqs-tester
+        run: |
+          ./gradlew build
+          ls build/libs
       - uses: aws-actions/amazon-ecr-login@v1
         id: login-ecr
-      - run: |
+      - name: Build docker image
+        working-directory: sqs-tester
+        run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
         env:
