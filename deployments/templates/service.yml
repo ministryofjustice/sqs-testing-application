@@ -6,6 +6,7 @@ spec:
   selector:
     app: sqstesting
   ports:
-    - name: https
+    - protocol: TCP
+      name: https
       port: 8080
       targetPort: 8080
