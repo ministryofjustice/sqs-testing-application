@@ -10,8 +10,6 @@ cloud-platform:
   aws:
     sqs:
       region: ${CLOUD_PLATFORM_QUEUE_REGION}
-      accesskey: ${CLOUD_PLATFORM_QUEUE_ACCESS_KEY}
-      secretkey: ${CLOUD_PLATFORM_QUEUE_SECRET_KEY}
       queue:
         link: ${CREATE_LINK_QUEUE}
         unlink: ${UNLINK_QUEUE}
@@ -19,6 +17,7 @@ cloud-platform:
           messageDelayDuration: 0
 sentry:
   dsn: ${SENTRY_DSN}
+  environment: ${ENVIRONMENT}
   # Set traces-sample-rate to 1.0 to capture 100% of transactions for performance monitoring.
   # We recommend adjusting this value in production.
   traces-sample-rate: 1.0
