@@ -34,7 +34,8 @@ dependencies {
 
 	// AWS
 	implementation group: 'io.awspring.cloud', name: 'spring-cloud-aws-messaging', version: '2.4.4'
-	implementation "software.amazon.awssdk:sts:2.20.63"
+	//implementation "software.amazon.awssdk:sts:2.20.63"
+	implementation group: 'com.amazonaws', name: 'aws-java-sdk-sts', version: '1.12.556'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
