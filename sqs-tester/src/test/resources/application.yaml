@@ -13,8 +13,7 @@ cloud:
       static: eu-west-1
       auto: false
     credentials:
-      access-key: accesskey
-      secret-key: secretkey
+      use-default-aws-credentials-chain: true
     sqs:
       endpoint: http://localhost:4566
       listener:

@@ -6,6 +6,17 @@ springdoc:
     path: "/api-documentation-raw"
   swagger-ui:
     path: "/api-documentation.html"
+cloud:
+  aws:
+    sqs:
+      enabled: ${ENABLE_SPRING_CLOUD_SQS:true}
+    stack:
+      auto: false
+    region:
+      static: ${CLOUD_PLATFORM_QUEUE_REGION}
+      auto: false
+    credentials:
+      use-default-aws-credentials-chain: true
 cloud-platform:
   aws:
     sqs:
