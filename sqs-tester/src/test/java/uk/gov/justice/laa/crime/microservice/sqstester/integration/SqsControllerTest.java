@@ -20,43 +20,43 @@ import static org.hamcrest.Matchers.containsString;
 @WebMvcTest(controllers = SqsController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
 public class SqsControllerTest {
 
-//    @Autowired
-//    private MockMvc mvc;
-//
-//    @MockBean
-//    private MessageQueueProcessor messageQueueProcessor;
-//
-//    @Test
-//    void givenValidRequest_thenReturnOkResponse() throws Exception {
-//        String caseJson = FileUtils.readFileToString("data/sqstester/link_example.json");
-//
-//        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(caseJson);
-//
-//        mvc.perform(request)
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString("OK")))
-//                .andReturn();
-//    }
-//
-//    @Test
-//    void givenNoRequestBodyOrContentType_thenReturn500Response() throws Exception {
-//        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link");
-//
-//        mvc.perform(request)
-//                .andExpect(status().is5xxServerError())
-//                .andReturn();
-//    }
-//
-//    @Test
-//    void givenInvalidRequestBody_thenReturn500Response() throws Exception {
-//        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link")
-//                .content("Not valid JSON")
-//                .contentType(MediaType.APPLICATION_JSON);
-//
-//        mvc.perform(request)
-//                .andExpect(status().is5xxServerError())
-//                .andReturn();
-//    }
+    @Autowired
+    private MockMvc mvc;
+
+    @MockBean
+    private MessageQueueProcessor messageQueueProcessor;
+
+    @Test
+    void givenValidRequest_thenReturnOkResponse() throws Exception {
+        String caseJson = FileUtils.readFileToString("data/sqstester/link_example.json");
+
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(caseJson);
+
+        mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("OK")))
+                .andReturn();
+    }
+
+    @Test
+    void givenNoRequestBodyOrContentType_thenReturn500Response() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link");
+
+        mvc.perform(request)
+                .andExpect(status().is5xxServerError())
+                .andReturn();
+    }
+
+    @Test
+    void givenInvalidRequestBody_thenReturn500Response() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/send-message/link")
+                .content("Not valid JSON")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mvc.perform(request)
+                .andExpect(status().is5xxServerError())
+                .andReturn();
+    }
 }

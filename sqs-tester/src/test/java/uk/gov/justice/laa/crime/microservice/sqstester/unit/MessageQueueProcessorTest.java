@@ -19,24 +19,24 @@ import static org.testcontainers.containers.localstack.LocalStackContainer.Servi
 @SpringBootTest
 public class MessageQueueProcessorTest extends LocalstackConfig {
 
-//    @Autowired
-//    private MessageQueueProcessor messageQueueProcessor;
-//
-//    @TestConfiguration
-//    static class AwsTestConfig {
-//        @Bean
-//        public AmazonSQSAsync amazonSQS() {
-//            return AmazonSQSAsyncClientBuilder.standard()
-//                    .withCredentials(localStack.getDefaultCredentialsProvider())
-//                    .withEndpointConfiguration(localStack.getEndpointConfiguration(SQS))
-//                    .build();
-//        }
-//    }
+    @Autowired
+    private MessageQueueProcessor messageQueueProcessor;
 
-//    @Test
-//    void givenQueueAndMessage_whenExecuteIsCalled_thenReturnValidResult() {
-//        String json = FileUtils.readFileToString("data/sqstester/link_example.json");
-//
-//        Assertions.assertTrue(messageQueueProcessor.execute(QUEUE_NAME, json));
-//    }
+    @TestConfiguration
+    static class AwsTestConfig {
+        @Bean
+        public AmazonSQSAsync amazonSQS() {
+            return AmazonSQSAsyncClientBuilder.standard()
+                    .withCredentials(localStack.getDefaultCredentialsProvider())
+                    .withEndpointConfiguration(localStack.getEndpointConfiguration(SQS))
+                    .build();
+        }
+    }
+
+    @Test
+    void givenQueueAndMessage_whenExecuteIsCalled_thenReturnValidResult() {
+        String json = FileUtils.readFileToString("data/sqstester/link_example.json");
+
+        Assertions.assertTrue(messageQueueProcessor.execute(QUEUE_NAME, json));
+    }
 }

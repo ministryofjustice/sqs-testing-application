@@ -16,6 +16,7 @@ cloud:
       use-default-aws-credentials-chain: true
     sqs:
       endpoint: http://localhost:4566
+      enabled: true
       listener:
         queue-stop-timeout: 500
 cloud-platform:
