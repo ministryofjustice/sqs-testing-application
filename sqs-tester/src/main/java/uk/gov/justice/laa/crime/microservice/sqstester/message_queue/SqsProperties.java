@@ -10,6 +10,4 @@ import org.springframework.stereotype.Component;
 public class SqsProperties {
 
     private String region;
-    private String accesskey;
-    private String secretkey;
 }
